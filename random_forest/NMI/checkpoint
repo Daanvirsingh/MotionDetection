@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/daanvir/gg/project/SRM_project/random_forest/NMI/saved_model.pbtxt"
+all_model_checkpoint_paths: "/home/daanvir/gg/project/SRM_project/random_forest/NMI/saved_model.pbtxt"

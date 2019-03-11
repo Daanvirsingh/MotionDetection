@@ -27,7 +27,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 # Parameters
-num_steps = 50 # Total steps to train
+num_steps = 100 # Total steps to train
 batch_size = 1024 # The number of samples per batch
 num_classes = 8 # The 10 digits
 num_features = 48# Each image is 28x28 pixels
@@ -83,7 +83,9 @@ plt.plot(x,y)
 plt.xlabel('epochs')
 plt.ylabel('accuracy')
 plt.show()
-save_path=saver.save(sess,"/home/daanvir/gg/project/SRM_project/motion_ml/results/model.ckpt")
+img=tf.placeholder(name="tag")
+tflite_model = tf.contrib.lite.toco_convert(sess.graph_del,)
+save_path=saver.save(sess,"/home/daanvir/gg/project/SRM_project/random_forest/NMI/saved_model.pbtxt")
 # Test Model
 
 print("Test Accuracy:", sess.run(accuracy_op, feed_dict={X: test_x, Y: test_y}))
