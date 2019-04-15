@@ -67,7 +67,7 @@ sess = tf.Session()
 
 # Run the initializer
 sess.run(init_vars)
-
+z=[]
 # Training
 for i in range(1, num_steps + 1):
     # Prepare Data
@@ -75,13 +75,17 @@ for i in range(1, num_steps + 1):
     
     _, l = sess.run([train_op, loss_op], feed_dict={X: train_x, Y: train_y})
     if i % 2 == 0 or i == 1:
-        x.append(i)
-        acc = sess.run(accuracy_op, feed_dict={X: train_x, Y: train_y})
+        x.append(i*20)
+        acc = sess.run(accuracy_op, feed_dict={X: test_x, Y: test_y})
+        accc=sess.run(accuracy_op, feed_dict={X: train_x, Y: train_y})
         y.append(acc)
+        z.append(acc)
         print('Step %i, Loss: %f, Acc: %f' % (i, l, acc))
 plt.plot(x,y)
 plt.xlabel('epochs')
 plt.ylabel('accuracy')
+plt.show()
+plt.plot(x,z)
 plt.show()
 img=tf.placeholder(name="tag")
 tflite_model = tf.contrib.lite.toco_convert(sess.graph_del,)
